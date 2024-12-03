@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -240,13 +240,13 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- Navigation integration for tmux
-  'christoomey/vim-tmux-navigator',
+  -- 'christoomey/vim-tmux-navigator',
 
   -- Undotree for saving file editing history
   'mbbill/undotree',
 
   -- Automatic pairs for parentheses etc.
-  'jiangmiao/auto-pairs',
+  -- 'jiangmiao/auto-pairs',
 
   -- Github copilot
   'github/copilot.vim',
@@ -262,16 +262,22 @@ require('lazy').setup({
   {
     'theprimeagen/harpoon',
     config = function()
-      local mark = require('harpoon.mark')
-      local ui = require('harpoon.ui')
+      local mark = require 'harpoon.mark'
+      local ui = require 'harpoon.ui'
 
       vim.keymap.set('n', '<C-a>', mark.add_file)
       vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
 
-      vim.keymap.set('n', '<C-t>', function() ui.nav_file(1) end)
-      vim.keymap.set('n', '<C-n>', function() ui.nav_file(2) end)
-      vim.keymap.set('n', '<C-s>', function() ui.nav_file(3) end)
-    end
+      vim.keymap.set('n', '<C-t>', function()
+        ui.nav_file(1)
+      end)
+      vim.keymap.set('n', '<C-n>', function()
+        ui.nav_file(2)
+      end)
+      vim.keymap.set('n', '<C-s>', function()
+        ui.nav_file(3)
+      end)
+    end,
   },
 
   -- NOTE: Plugins can also be added by using a table,
@@ -440,7 +446,6 @@ require('lazy').setup({
       -- This opens a window that shows you all of the keymaps for the current
       -- Telescope picker. This is really useful to discover what Telescope can
       -- do as well as how to actually do it!
-
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
@@ -804,12 +809,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -855,9 +860,9 @@ require('lazy').setup({
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -994,11 +999,11 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
