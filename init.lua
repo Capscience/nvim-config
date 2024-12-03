@@ -249,7 +249,7 @@ require('lazy').setup({
   -- 'jiangmiao/auto-pairs',
 
   -- Github copilot
-  'github/copilot.vim',
+  -- 'github/copilot.vim',
 
   -- Git related plugins
   'tpope/vim-fugitive',
