@@ -252,63 +252,12 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  -- Navigation integration for tmux
-  -- 'christoomey/vim-tmux-navigator',
-
-  -- Undotree for saving file editing history
-  'mbbill/undotree',
-
-  -- Automatic pairs for parentheses etc.
-  -- 'jiangmiao/auto-pairs',
-
-  -- Github copilot
-  -- 'github/copilot.vim',
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
-  -- Harpoon for fast navigation within a project
-  {
-    'theprimeagen/harpoon',
-    config = function()
-      local mark = require 'harpoon.mark'
-      local ui = require 'harpoon.ui'
-
-      vim.keymap.set('n', '<C-a>', mark.add_file)
-      vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
-
-      vim.keymap.set('n', '<C-t>', function()
-        ui.nav_file(1)
-      end)
-      vim.keymap.set('n', '<C-n>', function()
-        ui.nav_file(2)
-      end)
-      vim.keymap.set('n', '<C-s>', function()
-        ui.nav_file(3)
-      end)
-    end,
-  },
-
-  -- Oil.nvim for directory manipulation
-  {
-    'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    -- Optional dependencies
-    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    lazy = false,
-    config = function()
-      require('oil').setup()
-      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-    end,
-  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -1052,7 +1001,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
