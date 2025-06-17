@@ -25,8 +25,8 @@ return {
         end))
     end
 
-    rule2('{', '%', '}', 'html')
-    rule2('{%', ' ', '%}', 'html')
+    rule2('{', '%', '}', { 'html', 'htmldjango', 'jinja' })
+    rule2('{%', ' ', '%}', { 'html', 'htmldjango', 'jinja' })
     rule2('{', ':', '}', 'norg')
     rule2('(', ' ', ')')
     rule2('[', ' ', ']')
